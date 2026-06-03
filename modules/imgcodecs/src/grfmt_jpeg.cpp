@@ -108,12 +108,6 @@ ImageDecoder JpegDecoder::newDecoder() const
 
 void JpegDecoder::close()
 {
-    if( m_f )
-    {
-        fclose( m_f );
-        m_f = 0;
-    }
-
     if( m_state )
     {
         JpegState* state = (JpegState*)m_state;
@@ -127,6 +121,12 @@ void JpegDecoder::close()
         }
         delete state;
         m_state = 0;
+    }
+
+    if( m_f )
+    {
+        fclose( m_f );
+        m_f = 0;
     }
 }
 
